@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import Details from './components/Details';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = {
+    // isClicked: true,
+    show: false,
+  }
+
+  // toggle = () => {
+  //   this.setState({ isClicked: !this.state.isClicked })
+  // }
+
+  handleClick = () => {
+    this.setState({ show: !this.state.show })
+  }
+
+  render() {
+    return (
+      <div>
+      {this.state.show ? (
+        <Details details={['test1', 'test2', 'test3']}/>
+      ) : (
+        <p>The details are hidden</p>
+      )}
+      <button onClick={this.handleClick}>{this.state.show ? "Hide details" : "Show details"}</button>
+      </div>
+    )
+  }
 }
 
 export default App;
